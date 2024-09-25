@@ -51,6 +51,8 @@ from .envs.balance import BalanceHard, BalanceSimple
 from .envs.room import Room
 from .envs.powerlift import Powerlift
 from .envs.insert import Insert
+# CustomTaskCombine 추가
+from .envs.custom_task.baseline.custom_task_combine import CustomTaskCombine
 
 DEFAULT_CAMERA_CONFIG = {
     "trackbodyid": 1,
@@ -94,6 +96,8 @@ TASKS = {
     "insert_normal": Insert,
     "insert_small": Insert,  # This is not an error
     "powerlift": Powerlift,
+    # CustomTaskCombine 추가
+    "custom_task_combine": CustomTaskCombine,
 }
 
 
