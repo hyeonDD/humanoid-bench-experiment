@@ -1,0 +1,7 @@
+<mujocoinclude>
+    <worldbody>
+        <body name="curve_wall_0" pos="40 -10 0">
+            <include file="curve\generated_xml_curve_wall.xml"/>
+        </body>
+    </worldbody>
+</mujocoinclude>

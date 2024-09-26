@@ -1,0 +1,22 @@
+<mujoco model="test">humanoid_bench
+    <option timestep="0.002" iterations="100" ls_iterations="50" solver="Newton">
+        <flag eulerdamp="enable"/>
+    </option>
+    <include file="..\humanoid_bench\assets\common\visual.xml"/>
+    <include file="floor.xml"/>
+    <include file="..\humanoid_bench\assets\robots\h1_pos.xml"/>
+    <include file="pole\pole.xml" />
+    <include file="stair\stair.xml"/>
+    <include file='hurdle\hurdle.xml' />
+    <include file="wall\wall_0.xml"/>
+    <include file="wall\wall_1.xml"/>
+    <include file="curve\curve_slide_0.xml"/>
+    <include file="curve\curve_slide_1.xml"/>
+    <include file="curve\curve_wall_0.xml"/>
+    <include file="curve\curve_wall_1.xml"/>
+    <include file="curve\curve_stair_0.xml"/>
+    <include file="curve\curve_stair_1.xml"/>
+    <keyframe>
+        <key name="qpos0" qpos="0 0 0.98 1 0 0 0 0 0 -0.4 0.8 -0.4 0 0 -0.4 0.8 -0.4 0 0 0 0 0 0 0 0 0"/>
+    </keyframe>
+</mujoco>

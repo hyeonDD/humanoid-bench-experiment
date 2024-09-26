@@ -1,0 +1,7 @@
+<mujocoinclude>
+    <worldbody>
+        <body name="curve_stair_0" pos="60 -30 0" euler="0 0 0">
+            <include file="curve\generated_xml_curve_stair_left.xml"/>
+        </body>
+    </worldbody>
+</mujocoinclude>

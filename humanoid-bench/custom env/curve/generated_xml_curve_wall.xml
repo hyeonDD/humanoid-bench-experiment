@@ -1,0 +1,44 @@
+<mujoco model="curve_walls">
+
+    <!-- 원의 중심 : 10 = 5(트랙의 폭의 절반) + 5(곡선 반지름의 너비) -->
+    <body pos="0 0 0">
+        <geom type="box" size="0.2453 0.15 1" pos="4.9880 0.2450 1" euler="0 0 1.6199" />
+        <geom type="box" size="0.2453 0.15 1" pos="4.9399 0.7328 1" euler="0 0 1.7181" />
+        <geom type="box" size="0.2453 0.15 1" pos="4.8443 1.2134 1" euler="0 0 1.8162" />
+        <geom type="box" size="0.2453 0.15 1" pos="4.7020 1.6824 1" euler="0 0 1.9144" />
+        <geom type="box" size="0.2453 0.15 1" pos="4.5145 2.1352 1" euler="0 0 2.0126" />
+        <geom type="box" size="0.2453 0.15 1" pos="4.2835 2.5674 1" euler="0 0 2.1108" />
+        <geom type="box" size="0.2453 0.15 1" pos="4.0112 2.9749 1" euler="0 0 2.2089" />
+        <geom type="box" size="0.2453 0.15 1" pos="3.7003 3.3538 1" euler="0 0 2.3071" />
+        <geom type="box" size="0.2453 0.15 1" pos="3.3538 3.7003 1" euler="0 0 2.4053" />
+        <geom type="box" size="0.2453 0.15 1" pos="2.9749 4.0112 1" euler="0 0 2.5035" />
+        <geom type="box" size="0.2453 0.15 1" pos="2.5674 4.2835 1" euler="0 0 2.6016" />
+        <geom type="box" size="0.2453 0.15 1" pos="2.1352 4.5145 1" euler="0 0 2.6998" />
+        <geom type="box" size="0.2453 0.15 1" pos="1.6824 4.7020 1" euler="0 0 2.7980" />
+        <geom type="box" size="0.2453 0.15 1" pos="1.2134 4.8443 1" euler="0 0 2.8962" />
+        <geom type="box" size="0.2453 0.15 1" pos="0.7328 4.9399 1" euler="0 0 2.9943" />
+        <geom type="box" size="0.2453 0.15 1" pos="0.2450 4.9880 1" euler="0 0 3.0925" />
+    </body>
+    <!-- 반지름의 넓이 = 15 = 5(작은 원의 반지름) + 10(트랙의 폭)-->
+    <body pos="0 0 0">
+        <geom type="box" size="0.7360 0.15 1" pos="14.9639 0.7351 1" euler="0 0 1.6199" />
+        <geom type="box" size="0.7360 0.15 1" pos="14.8198 2.1983 1" euler="0 0 1.7181" />
+        <geom type="box" size="0.7360 0.15 1" pos="14.5329 3.6403 1" euler="0 0 1.8162" />
+        <geom type="box" size="0.7360 0.15 1" pos="14.1061 5.0473 1" euler="0 0 1.9144" />
+        <geom type="box" size="0.7360 0.15 1" pos="13.5435 6.4056 1" euler="0 0 2.0126" />
+        <geom type="box" size="0.7360 0.15 1" pos="12.8504 7.7023 1" euler="0 0 2.1108" />
+        <geom type="box" size="0.7360 0.15 1" pos="12.0336 8.9247 1" euler="0 0 2.2089" />
+        <geom type="box" size="0.7360 0.15 1" pos="11.1009 10.0613 1" euler="0 0 2.3071" />
+        <geom type="box" size="0.7360 0.15 1" pos="10.0613 11.1009 1" euler="0 0 2.4053" />
+        <geom type="box" size="0.7360 0.15 1" pos="8.9247 12.0336 1" euler="0 0 2.5035" />
+        <geom type="box" size="0.7360 0.15 1" pos="7.7023 12.8504 1" euler="0 0 2.6016" />
+        <geom type="box" size="0.7360 0.15 1" pos="6.4056 13.5435 1" euler="0 0 2.6998" />
+        <geom type="box" size="0.7360 0.15 1" pos="5.0473 14.1061 1" euler="0 0 2.7980" />
+        <geom type="box" size="0.7360 0.15 1" pos="3.6403 14.5329 1" euler="0 0 2.8962" />
+        <geom type="box" size="0.7360 0.15 1" pos="2.1983 14.8198 1" euler="0 0 2.9943" />
+        <geom type="box" size="0.7360 0.15 1" pos="0.7351 14.9639 1" euler="0 0 3.0925" />
+    </body>
+</mujoco>
+
+
+

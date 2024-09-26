@@ -1,0 +1,9 @@
+<mujocoinclude>
+    <worldbody>
+        <body name="curve_slide_1" pos="60 -10 0" euler="0 0 -1.57">
+            <include file="curve\generated_xml_curve_slide_left.xml"/>
+        </body>
+    </worldbody>
+</mujocoinclude>
+
+
