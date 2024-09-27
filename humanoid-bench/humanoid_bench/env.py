@@ -107,7 +107,7 @@ TASKS = {
     "powerlift": Powerlift,
     # CustomTaskCombine 추가
     "custom_task_combine": CustomTaskCombine,
-    "protowalker": Walker2dEnv,
+    # "protowalker": Walker2dEnv,   # 오류 나와서 주석처리
 }
 
 
