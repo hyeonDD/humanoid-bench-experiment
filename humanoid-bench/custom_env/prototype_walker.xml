@@ -1,0 +1,15 @@
+<mujoco model="g1_torque_pole">humanoid_bench
+    <option timestep="0.002" iterations="100" ls_iterations="50" solver="Newton">
+        <flag eulerdamp="enable"/>
+    </option>
+    <include file="..\humanoid_bench\assets\common\visual.xml"/>
+    <include file="floor.xml"/>
+    <include file="walker2d.xml"/>
+    <include file="pole\pole.xml" />
+    <include file="stair\stair.xml"/>
+    <include file='hurdle\hurdle.xml' />
+    <include file="wall\wall_0.xml"/>
+    <include file="wall\wall_1.xml"/>
+    <include file="wall\wall_2.xml"/>
+
+</mujoco>
