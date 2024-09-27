@@ -51,8 +51,10 @@ from .envs.balance import BalanceHard, BalanceSimple
 from .envs.room import Room
 from .envs.powerlift import Powerlift
 from .envs.insert import Insert
+
 # CustomTaskCombine 추가
 from .envs.custom_task.baseline.custom_task_combine import CustomTaskCombine
+from .envs.custom_task.walker2d import Walker2dEnv
 
 DEFAULT_CAMERA_CONFIG = {
     "trackbodyid": 1,
@@ -62,7 +64,14 @@ DEFAULT_CAMERA_CONFIG = {
 }
 DEFAULT_RANDOMNESS = 0.01
 
-ROBOTS = {"h1": H1, "h1hand": H1Hand, "h1simplehand": H1SimpleHand, "h1strong": H1Strong, "h1touch": H1Touch, "g1": G1}
+ROBOTS = {
+    "h1": H1,
+    "h1hand": H1Hand,
+    "h1simplehand": H1SimpleHand,
+    "h1strong": H1Strong,
+    "h1touch": H1Touch,
+    "g1": G1,
+}
 TASKS = {
     "stand": Stand,
     "walk": Walk,
@@ -98,6 +107,7 @@ TASKS = {
     "powerlift": Powerlift,
     # CustomTaskCombine 추가
     "custom_task_combine": CustomTaskCombine,
+    "proto_walker": Walker2dEnv,
 }
 
 
@@ -181,7 +191,6 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
                 self.task = DoubleReachRelativeWrapper(self.task, **kwargs)
             else:
                 raise ValueError(f"Unknown policy_type: {kwargs['policy_type']}")
-        
 
         if self.obs_wrapper:
             # Note that observation wrapper is not compatible with hierarchical policy
