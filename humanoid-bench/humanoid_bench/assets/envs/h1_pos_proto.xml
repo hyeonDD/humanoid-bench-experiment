@@ -11,5 +11,7 @@
     <include file="../../../custom_env/wall/wall_0.xml"/>
     <include file="../../../custom_env/wall/wall_1.xml"/>
     <include file="../../../custom_env/wall/wall_2.xml"/>
-
+    <keyframe>
+        <key name="qpos0" qpos="0 0 0.98 1 0 0 0 0 0 -0.4 0.8 -0.4 0 0 -0.4 0.8 -0.4 0 0 0 0 0 0 0 0 0"/>
+    </keyframe>
 </mujoco>
