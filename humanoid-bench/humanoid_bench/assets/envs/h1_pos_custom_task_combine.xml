@@ -1,4 +1,18 @@
-<!-- <mujoco model="g1_torque_pole">humanoid_bench -->
+<mujoco model="h1_pos_custom_task_combine">
+    <option timestep="0.002" iterations="100" ls_iterations="50" solver="Newton">
+        <flag eulerdamp="enable"/>
+    </option>
+    <!-- Hurdle 환경 (h1_pos_hurdle.xml) -->
+    <include file="../common/visual.xml"/>
+    <include file="../common/floor.xml"/>
+    <include file="../robots/h1_pos.xml"/>
+    <include file="../tasks/hurdle.xml"/>
+    <keyframe>
+        <key name="qpos0" qpos="0 0 0.98 1 0 0 0 0 0 -0.4 0.8 -0.4 0 0 -0.4 0.8 -0.4 0 0 0 0 0 0 0 0 0"/>
+    </keyframe>
+</mujoco>
+
+<!-- <mujoco model="g1_torque_pole">humanoid_bench
 <mujoco model="h1_pos_custom_task_combine">humanoid_bench
     <option timestep="0.002" iterations="100" ls_iterations="50" solver="Newton">
         <flag eulerdamp="enable"/>
@@ -20,4 +34,4 @@
     <include file="wall\wall_1.xml"/>
     <include file="wall\wall_2.xml"/> 
     -->
-</mujoco>
+</mujoco> -->
