@@ -1,0 +1,23 @@
+<!-- <mujoco model="g1_torque_pole">humanoid_bench -->
+<mujoco model="h1_pos_custom_task_combine">humanoid_bench
+    <option timestep="0.002" iterations="100" ls_iterations="50" solver="Newton">
+        <flag eulerdamp="enable"/>
+    </option>
+    <!-- <include file="..\humanoid_bench\assets\common\visual.xml"/> -->
+    <include file="../common/visual.xml"/>
+    <!-- <include file="floor.xml"/> -->
+    <include file="../common/floor.xml"/>
+    <!-- <include file="..\humanoid_bench\assets\robots\h1_pos.xml"/> -->
+    <include file="../robots/h1_pos.xml"/>
+    <!-- 추가 -->
+    <include file="../tasks/custom_combine.xml"/>
+    <!-- 이 아래거를 위에 추가한 파일안에 -->
+    <!-- 
+    <include file="pole\pole.xml" />
+    <include file="stair\stair.xml"/>
+    <include file='hurdle\hurdle.xml' />
+    <include file="wall\wall_0.xml"/>
+    <include file="wall\wall_1.xml"/>
+    <include file="wall\wall_2.xml"/> 
+    -->
+</mujoco>

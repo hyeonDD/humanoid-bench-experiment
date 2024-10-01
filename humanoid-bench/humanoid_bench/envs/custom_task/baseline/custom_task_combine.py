@@ -1,12 +1,14 @@
 import numpy as np
 from humanoid_bench.envs.pole import Pole
 from humanoid_bench.envs.basic_locomotion_envs import Hurdle, ClimbingUpwards
+from humanoid_bench.tasks import Task
 
-class CustomTaskCombine:
+class CustomTaskCombine(Task):
     """
     3개 task를 병합해서 실행
     """
-    def __init__(self):
+    def __init__(self, robot=None, env=None, **kwargs):
+        super().__init__(robot, env, **kwargs)
         self.pole_task = Pole()
         self.hurdle_task = Hurdle()
         self.climbing_task = ClimbingUpwards()
