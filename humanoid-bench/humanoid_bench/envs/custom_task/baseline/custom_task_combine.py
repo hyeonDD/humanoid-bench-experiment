@@ -57,6 +57,10 @@ class CustomTaskCombine(Task):
 
     def render(self):
         # 모든 task의 렌더링을 호출
-        self.pole_task.render()
-        self.hurdle_task.render()
-        self.climbing_task.render()
+        # self.pole_task.render()
+        # self.hurdle_task.render()
+        # self.climbing_task.render()
+        # return self.pole_task.render()
+        return self.hurdle_task.render()
+        # return self.climbing_task.render()
+        
