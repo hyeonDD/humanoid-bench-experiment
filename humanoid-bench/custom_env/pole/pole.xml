@@ -1,5 +1,5 @@
 <mujocoinclude>
     <worldbody>
-        <include file="pole/generated_xml_poles.xml"/>
+        <include file="generated_xml_poles.xml"/>
     </worldbody>
 </mujocoinclude>
