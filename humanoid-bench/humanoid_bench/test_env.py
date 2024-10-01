@@ -1,3 +1,4 @@
+"""
 import argparse
 import pathlib
 
@@ -81,3 +82,75 @@ if __name__ == "__main__":
             ret = 0
             env.reset()
     env.close()
+"""
+
+import argparse
+import pathlib
+import cv2
+import gymnasium as gym
+import humanoid_bench
+from .env import ROBOTS, TASKS
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(prog="HumanoidBench environment test")
+    parser.add_argument("--env", help="e.g. h1-walk-v0")
+    parser.add_argument("--keyframe", default=None)
+    parser.add_argument("--policy_path", default=None)
+    parser.add_argument("--mean_path", default=None)
+    parser.add_argument("--var_path", default=None)
+    parser.add_argument("--policy_type", default=None)
+    parser.add_argument("--blocked_hands", default="False")
+    parser.add_argument("--small_obs", default="False")
+    parser.add_argument("--obs_wrapper", default="False")
+    parser.add_argument("--sensors", default="")
+    parser.add_argument("--render_mode", default="rgb_array")  # "human" or "rgb_array".
+    parser.add_argument("--max_steps", type=int, default=1000, help="Number of steps to record.")
+    args = parser.parse_args()
+
+    kwargs = vars(args).copy()
+    kwargs.pop("env")
+    kwargs.pop("render_mode")
+    if kwargs["keyframe"] is None:
+        kwargs.pop("keyframe")
+    print(f"arguments: {kwargs}")
+
+    # Test offscreen rendering and save to video
+    print(f"Test offscreen mode...")
+    env = gym.make(args.env, render_mode="rgb_array", **kwargs)
+    ob, _ = env.reset()
+    if isinstance(ob, dict):
+        print(f"ob_space = {env.observation_space}")
+        print(f"ob = ")
+        for k, v in ob.items():
+            print(f"  {k}: {v.shape}")
+    else:
+        print(f"ob_space = {env.observation_space}, ob = {ob.shape}")
+    print(f"ac_space = {env.action_space.shape}")
+
+    # 비디오 저장을 위한 설정
+    video_path = "test_env_video.mp4"
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    fps = 30
+    height, width, _ = env.render().shape
+    video_writer = cv2.VideoWriter(video_path, fourcc, fps, (width, height))
+
+    # 특정 스텝 수만큼만 루프 실행
+    max_steps = args.max_steps
+    step_count = 0
+    ret = 0
+    while step_count < max_steps:
+        action = env.action_space.sample()
+        ob, rew, terminated, truncated, info = env.step(action)
+        img = env.render()
+        video_writer.write(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))  # 비디오로 저장
+
+        ret += rew
+        step_count += 1
+
+        if terminated or truncated:
+            ret = 0
+            env.reset()
+
+    video_writer.release()  # 비디오 저장
+    env.close()
+    print(f"Video saved to {video_path}")
