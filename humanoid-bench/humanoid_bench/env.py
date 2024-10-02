@@ -106,7 +106,7 @@ TASKS = {
     "powerlift": Powerlift,
     # CustomTaskCombine 추가
     "custom_task_combine": CustomTaskCombine,
-    "proto": CustomTaskCombine,
+    "proto": Pole,
 }
 
 
