@@ -1,15 +1,24 @@
 import numpy as np
 from humanoid_bench.envs.pole import Pole
 from humanoid_bench.envs.basic_locomotion_envs import Hurdle, ClimbingUpwards
+from humanoid_bench.tasks import Task
+from gymnasium.spaces import Box
 
-class CustomTaskCombine:
+class CustomTaskCombine(Task):
     """
     3개 task를 병합해서 실행
     """
-    def __init__(self):
-        self.pole_task = Pole()
-        self.hurdle_task = Hurdle()
-        self.climbing_task = ClimbingUpwards()
+    def __init__(self, robot=None, env=None, **kwargs):
+        super().__init__(robot, env, **kwargs)
+        self.pole_task = Pole(robot, env, **kwargs)
+        self.hurdle_task = Hurdle(robot, env, **kwargs)
+        self.climbing_task = ClimbingUpwards(robot, env, **kwargs)
+    
+    @property
+    def observation_space(self):
+        return Box(
+            low=-np.inf, high=np.inf, shape=(self.robot.dof * 2 - 1,), dtype=np.float64
+        )
 
     def reset(self):
         # 모든 task를 초기화
@@ -22,22 +31,22 @@ class CustomTaskCombine:
 
     def _combine_observations(self, pole_obs, hurdle_obs, climbing_obs):
         # 각 task의 관찰값을 결합하여 하나의 상태 벡터로 만듦
-        combined_obs = np.concatenate([pole_obs, hurdle_obs, climbing_obs])
+        # combined_obs = np.concatenate([pole_obs, hurdle_obs, climbing_obs])
+        combined_obs = pole_obs + hurdle_obs + climbing_obs
         return combined_obs
 
     def step(self, action):
         # 각 task에 동일한 action을 적용
-        pole_obs, pole_reward, pole_done, pole_info = self.pole_task.step(action)
-        hurdle_obs, hurdle_reward, hurdle_done, hurdle_info = self.hurdle_task.step(action)
-        climbing_obs, climbing_reward, climbing_done, climbing_info = self.climbing_task.step(action)
-
-        # 관찰값, 보상, 종료 조건 통합
+        pole_obs, pole_reward, pole_done, _, pole_info = self.pole_task.step(action)
+        hurdle_obs, hurdle_reward, hurdle_done, _, hurdle_info = self.hurdle_task.step(action)
+        climbing_obs, climbing_reward, climbing_done, _, climbing_info = self.climbing_task.step(action)
+        
         combined_obs = self._combine_observations(pole_obs, hurdle_obs, climbing_obs)
         combined_reward = self._combine_rewards(pole_reward, hurdle_reward, climbing_reward)
         done = pole_done and hurdle_done and climbing_done
         info = {'pole': pole_info, 'hurdle': hurdle_info, 'climbing': climbing_info}
 
-        return combined_obs, combined_reward, done, info
+        return combined_obs, combined_reward, done, False, info
 
     def _combine_rewards(self, pole_reward, hurdle_reward, climbing_reward):
         # 각 task의 보상을 합치거나 가중치를 두어 결합
@@ -48,6 +57,10 @@ class CustomTaskCombine:
 
     def render(self):
         # 모든 task의 렌더링을 호출
-        self.pole_task.render()
-        self.hurdle_task.render()
-        self.climbing_task.render()
+        # self.pole_task.render()
+        # self.hurdle_task.render()
+        # self.climbing_task.render()
+        # return self.pole_task.render()
+        return self.hurdle_task.render()
+        # return self.climbing_task.render()
+        

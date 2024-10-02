@@ -1,0 +1,19 @@
+<mujocoinclude>
+    <worldbody>
+        <!-- <include file="pole\pole.xml" /> -->
+        <include file="../locomotion/custom_env/pole/pole.xml"/>
+        <!-- <include file="stair\stair.xml"/> -->
+        <include file="../locomotion/custom_env/stair/stair.xml"/>
+        <!-- <include file='hurdle\hurdle.xml' /> -->
+        <include file="../locomotion/custom_env/hurdle/hurdle.xml"/>
+        <!-- <include file="wall\wall_0.xml"/> -->
+        <include file="../locomotion/custom_env/wall/wall_0.xml"/>
+        <!-- <include file="wall\wall_1.xml"/> -->
+        <include file="../locomotion/custom_env/wall/wall_1.xml"/>
+        <!-- <include file="wall\wall_2.xml"/> -->
+        <include file="../locomotion/custom_env/wall/wall_2.xml"/>
+    </worldbody>
+</mujocoinclude>
+
+
+

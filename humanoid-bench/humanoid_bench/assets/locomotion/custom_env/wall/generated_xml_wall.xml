@@ -1,0 +1,11 @@
+<mujoco model="walls">
+    <body pos="0 0 0">
+        <geom type="box" pos="10 5 1" size="10 0.15 1" class="visual"/>
+        <geom type="box" pos="10 5 1" size="10 0.15 1" class="collision"/>
+    </body>
+    <body pos="0 0 0">
+        <geom type="box" pos="10 -5 1" size="10 0.15 1" class="visual"/>
+        <geom type="box" pos="10 -5 1" size="10 0.15 1" class="collision"/>
+    </body>
+
+</mujoco>
