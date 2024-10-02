@@ -19,3 +19,12 @@ for robot in ROBOTS:
             max_episode_steps=task_info.max_episode_steps,
             kwargs=kwargs,
         )
+
+import gym
+
+# 등록된 모든 환경 목록 출력
+env_specs = gym.envs.registry
+env_list = list(env_specs.keys())
+
+for env_name in env_list:
+    print(env_name)
