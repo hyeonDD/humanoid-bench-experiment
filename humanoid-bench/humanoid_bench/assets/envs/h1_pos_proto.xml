@@ -1,4 +1,4 @@
-<mujoco model="g1_pos_proto">humanoid_bench
+<mujoco model="h1_pos_proto">humanoid_bench
     <option timestep="0.002" iterations="100" ls_iterations="50" solver="Newton">
         <flag eulerdamp="enable"/>
     </option>

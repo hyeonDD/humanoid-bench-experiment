@@ -54,7 +54,6 @@ from .envs.insert import Insert
 
 # CustomTaskCombine 추가
 from .envs.custom_task.baseline.custom_task_combine import CustomTaskCombine
-from .envs.custom_task.walker2d import Walker2dEnv
 
 DEFAULT_CAMERA_CONFIG = {
     "trackbodyid": 1,
@@ -107,7 +106,6 @@ TASKS = {
     "powerlift": Powerlift,
     # CustomTaskCombine 추가
     "custom_task_combine": CustomTaskCombine,
-    # "protowalker": Walker2dEnv,   # 오류 나와서 주석처리
     "proto": CustomTaskCombine,
 }
 
