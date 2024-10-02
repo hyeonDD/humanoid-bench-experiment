@@ -52,14 +52,6 @@ def make_env(cfg):
         small_obs = str(small_obs)
 
     print("small obs start:", small_obs)
-    import gym
-
-    # 등록된 모든 환경 목록 출력
-    env_specs = gym.envs.registry
-    env_list = list(env_specs.keys())
-
-    for env_name in env_list:
-        print(env_name)
 
     env = gym.make(
         cfg.task.removeprefix("humanoid_"),
