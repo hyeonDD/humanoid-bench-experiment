@@ -8,7 +8,6 @@ for robot in ROBOTS:
     else:
         control = "pos"
     for task, task_info in TASKS.items():
-        print(f"{robot}-{task}-v0")
         task_info = task_info()
         kwargs = task_info.kwargs.copy()
         kwargs["robot"] = robot
