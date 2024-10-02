@@ -52,7 +52,7 @@ def make_env(cfg):
         small_obs = str(small_obs)
 
     print("small obs start:", small_obs)
-
+    print(cfg.task.removeprefix("humanoid_"))
     env = gym.make(
         cfg.task.removeprefix("humanoid_"),
         policy_path=policy_path,
