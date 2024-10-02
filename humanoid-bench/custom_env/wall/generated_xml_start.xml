@@ -1,6 +1,6 @@
 <mujoco>
     <body name="start_wall" pos="0 0 0">
         <geom type="box" name="start_wall" pos="0 0 1" size="0.15 5 1" class="visual"/>
-        <geom type="box" pos="0 0 1" size="0.15 5 1" class="collision"/>
+        <geom type="box" name="behind_barrier_collision" pos="0 0 1" size="0.15 5 1" class="collision"/>
     </body>
 </mujoco>
