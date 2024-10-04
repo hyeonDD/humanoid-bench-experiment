@@ -84,7 +84,7 @@ class Pole(Task):
 
         all_geoms_id = self._env.named.data.geom_xpos.axes.row.names
 
-        # any에 충돌로 보상을 줄일 물체 이름 지정 필요
+        # any에 충돌로 보상을 줄일 물체 이름은 collision_으로 시작
         collision_discount = 1
         for pair in self._env.data.contact.geom:
             if (
