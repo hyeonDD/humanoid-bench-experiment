@@ -88,7 +88,7 @@ class Pole(Task):
         collision_discount = 1
         for pair in self._env.data.contact.geom:
             if (
-                any(["pole_r" in all_geoms_id[p_val] for p_val in pair])
+                any(["collision" in all_geoms_id[p_val] for p_val in pair])
                 and 0 not in pair
             ):  #
                 collision_discount = 0.1
