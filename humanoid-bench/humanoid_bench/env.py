@@ -107,6 +107,10 @@ TASKS = {
     # CustomTaskCombine 추가
     "custom_task_combine": CustomTaskCombine,
     "proto": CustomTaskCombine,
+    "walk_with_hurdle": Walk, # basic graph
+    "walk_with_stair": Walk, # basic graph
+    "walk_with_pole ": Walk, # basic graph
+
 }
 
 
