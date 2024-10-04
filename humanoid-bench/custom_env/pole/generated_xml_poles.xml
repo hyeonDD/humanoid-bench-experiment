@@ -18,6 +18,13 @@
 			<geom type="cylinder" pos="0 -2.25 1" size="0.05 1" rgba="0.5 0.5 0.5 1" class="visual"/>
 			<geom type="cylinder" name="pole_r1_c4" pos="0 -2.25 1" size="0.05 1" class="collision"/>
 
+			<geom type="cylinder" pos="0 3.75 1" size="0.05 1" rgba="0.5 0.5 0.5 1" class="visual"/>
+			<geom type="cylinder" name="pole_r1_c5" pos="0 3.75 1" size="0.05 1" class="collision"/>
+
+
+			<geom type="cylinder" pos="0 -3.75 1" size="0.05 1" rgba="0.5 0.5 0.5 1" class="visual"/>
+			<geom type="cylinder" name="pole_r1_c6" pos="0 -3.75 1" size="0.05 1" class="collision"/>
+
 		</body>
 		<body name="pole_row_2" pos="2.0 0 0">
 
