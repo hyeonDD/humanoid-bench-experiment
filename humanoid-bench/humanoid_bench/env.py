@@ -245,6 +245,22 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
     def render(self):
         return self.task.render()
 
+    # 오브젝트 색 변경
+    def change_geom_color(self, geom_id, color):
+        """지정된 geom의 색상을 변경"""
+        self.model.geom_rgba[geom_id] = color
+
+    # 랜덤한 색으로 변경
+    def randomize_visual_geom_colors(self):
+        """visual class의 모든 geom의 색상을 무작위로 변경"""
+        for geom_id in range(self.model.ngeom):
+            geom_name = self.model.geom_id2name(geom_id)
+            if "visual" in geom_name:  # geom 이름에 'visual'이 포함된 경우
+                rng = np.random.default_rng(42)  # 새로운 난수 생성기 생성
+                random_color = rng.random(4)
+                random_color[3] = 1  # 불투명도는 1로 고정
+                self.change_geom_color(geom_id, random_color)
+
 
 if __name__ == "__main__":
     register(
