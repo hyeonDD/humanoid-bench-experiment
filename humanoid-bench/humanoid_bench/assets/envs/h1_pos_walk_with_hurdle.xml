@@ -1,4 +1,4 @@
-<mujoco model="h1_pos_walk_hurdle">
+<mujoco model="h1_pos_walk_with_hurdle">
     <option timestep="0.002" iterations="100" ls_iterations="50" solver="Newton">
         <flag eulerdamp="enable"/>
     </option>
