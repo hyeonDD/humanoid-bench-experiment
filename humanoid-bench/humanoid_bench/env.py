@@ -110,6 +110,15 @@ TASKS = {
     "walk_with_hurdle": Walk, # basic graph
     "walk_with_stair": Walk, # basic graph
     "walk_with_pole": Walk, # basic graph
+    "hurdle_with_walk": Hurdle, # basic graph
+    "hurdle_with_stair": Hurdle, # basic graph
+    "hurdle_with_pole": Hurdle, # basic graph
+    "stair_with_walk": Stair, # basic graph
+    "stair_with_hurdle": Stair, # basic graph
+    "stair_with_pole": Stair, # basic graph
+    "pole_with_walk": Pole, # basic graph
+    "pole_with_stair": Pole, # basic graph
+    "pole_with_hurdle": Pole, # basic graph
 }
 
 
