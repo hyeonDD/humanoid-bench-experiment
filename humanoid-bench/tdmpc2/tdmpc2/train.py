@@ -59,11 +59,15 @@ def train(cfg: dict):
         buffer=Buffer(cfg),
         logger=Logger(cfg),
     )
-    # try:
-    trainer.train()
-    print("\nTraining completed successfully")
-    # except Exception:
-    #     trainer.logger.save_agent(trainer.agent)
+    try:
+        trainer.train()
+        print("\nTraining completed successfully")
+    except KeyboardInterrupt:
+        print("\nTraining interrupted. Saving the model...")
+        trainer.logger.save_agent(trainer.agent)
+        print("Model saved successfully.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 
 if __name__ == "__main__":
