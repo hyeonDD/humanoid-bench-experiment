@@ -268,7 +268,11 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
                 rng = np.random.default_rng(42)  # 새로운 난수 생성기 생성
                 random_color = rng.random(4)
                 random_color[3] = 1  # 불투명도는 1로 고정
-                self.change_geom_color(geom_id, random_color)
+                # geom의 색상 직접 변경
+                self.model.geom_rgba[geom_id] = random_color
+
+        # 시뮬레이터 업데이트
+        mujoco.mj_forward(self.model, self.data)
 
 
 if __name__ == "__main__":
