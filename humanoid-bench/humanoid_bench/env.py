@@ -264,17 +264,24 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
 
     # 랜덤한 색으로 변경
     def randomize_visual_geom_colors(self):
+        from mujoco import mj_id2name, mjtObj
+
         """visual class의 모든 geom의 색상을 무작위로 변경"""
         for geom_id in range(self.model.ngeom):
-            geom_name = self.model.geom_id2name(geom_id)
-            geom_class = self.model.geom_class[geom_id]
-            if (
-                geom_class == "visual" and "wall" not in geom_name
-            ):  # geom 이름에 'visual'이 포함된 경우, 단 wall은 제외
-                rng = np.random.default_rng(42)  # 새로운 난수 생성기 생성
+            # ID로 이름을 가져옴 (Python 바인딩에서 mj_id2name 함수 사용)
+            geom_name = mj_id2name(self.model, mjtObj.mjOBJ_GEOM, geom_id)
+
+            # 만약 geom_name이 None인 경우는 continue
+            if geom_name is None:
+                continue
+
+            # geom의 이름에 "visual"이 포함되어 있는지 확인
+            if "visual" in geom_name and "wall" not in geom_name:
+                rng = np.random.default_rng()  # 새로운 난수 생성기 생성
                 random_color = rng.random(4)
                 random_color[3] = 1  # 불투명도는 1로 고정
-                self.change_geom_color(geom_id, random_color)
+                # geom의 색상 직접 변경
+                self.model.geom_rgba[geom_id] = random_color
 
 
 if __name__ == "__main__":

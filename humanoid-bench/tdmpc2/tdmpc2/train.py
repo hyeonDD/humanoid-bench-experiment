@@ -22,6 +22,8 @@ from tdmpc2.trainer.offline_trainer import OfflineTrainer
 from tdmpc2.trainer.online_trainer import OnlineTrainer
 from tdmpc2.common.logger import Logger
 
+import traceback
+
 torch.backends.cudnn.benchmark = True
 
 
@@ -62,8 +64,13 @@ def train(cfg: dict):
     try:
         trainer.train()
         print("\nTraining completed successfully")
-    except Exception:
+    except KeyboardInterrupt:
+        print("\nTraining interrupted. Saving the model...")
         trainer.logger.save_agent(trainer.agent)
+        print("Model saved successfully.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        traceback.print_exc()
 
 
 if __name__ == "__main__":
