@@ -122,7 +122,6 @@ TASKS = {
 #     "pole_with_walk": Pole, # basic graph
 #     "pole_with_stair": Pole, # basic graph
 #     "pole_with_hurdle": Pole, # basic graph
- main
 }
 
 
