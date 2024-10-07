@@ -54,6 +54,8 @@ from .envs.insert import Insert
 
 # CustomTaskCombine 추가
 from .envs.custom_task.baseline.custom_task_combine import CustomTaskCombine
+from .envs.custom_task.baseline.base_v2 import Base
+
 
 DEFAULT_CAMERA_CONFIG = {
     "trackbodyid": 1,
@@ -106,7 +108,8 @@ TASKS = {
     "powerlift": Powerlift,
     # CustomTaskCombine 추가
     "custom_task_combine": CustomTaskCombine,
-    "proto": CustomTaskCombine,
+    "proto": Base,
+    "proto_slide": Base,
 }
 
 
