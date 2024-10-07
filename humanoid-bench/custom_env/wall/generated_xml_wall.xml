@@ -1,10 +1,10 @@
 <mujoco model="walls">
     <body pos="0 0 0">
-        <geom type="box" pos="30 5 1" size="30 0.15 1" rgba="0.2 0.2 0.2 0.2" class="visual"/>
+        <geom type="box" name="left_wall" pos="30 5 1" size="30 0.15 1" rgba="0.2 0.2 0.2 0.2" class="visual"/>
         <geom type="box" name="collision_left_barrier" pos="30 5 1" size="30 0.15 1" class="collision"/>
     </body>
     <body pos="0 0 0">
-        <geom type="box" pos="30 -5 1" size="30 0.15 1" rgba="0.2 0.2 0.2 0.2" class="visual"/>
+        <geom type="box" name="right_wall" pos="30 -5 1" size="30 0.15 1" rgba="0.2 0.2 0.2 0.2" class="visual"/>
         <geom type="box" name="collision_right_barrier" pos="30 -5 1" size="30 0.15 1" class="collision"/>
     </body>
 
