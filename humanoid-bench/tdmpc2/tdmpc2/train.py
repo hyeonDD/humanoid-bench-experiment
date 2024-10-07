@@ -63,7 +63,7 @@ def train(cfg: dict):
         trainer.train()
         print("\nTraining completed successfully")
     except Exception:
-        trainer.save_agent(trainer.agent)
+        trainer.logger.save_agent(trainer.agent)
 
 
 if __name__ == "__main__":
