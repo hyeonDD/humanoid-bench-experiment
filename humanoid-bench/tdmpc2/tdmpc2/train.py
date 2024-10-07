@@ -59,11 +59,11 @@ def train(cfg: dict):
         buffer=Buffer(cfg),
         logger=Logger(cfg),
     )
-    try:
-        trainer.train()
-        print("\nTraining completed successfully")
-    except Exception:
-        trainer.logger.save_agent(trainer.agent)
+    # try:
+    trainer.train()
+    print("\nTraining completed successfully")
+    # except Exception:
+    #     trainer.logger.save_agent(trainer.agent)
 
 
 if __name__ == "__main__":
