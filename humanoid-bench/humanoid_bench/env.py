@@ -254,7 +254,10 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
     def randomize_visual_geom_colors(self):
         """visual class의 모든 geom의 색상을 무작위로 변경"""
         for geom_id in range(self.model.ngeom):
-            geom_name = self.model.id2name(geom_id, "geom")
+            # geom의 이름 주소를 이용해 이름을 가져옴
+            name_address = self.model.geom_nameadr[geom_id]
+            geom_name = self.model.names[name_address:]
+
             geom_class = self.model.geom_class[geom_id]
             if (
                 geom_class == "visual" and "wall" not in geom_name
