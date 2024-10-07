@@ -263,10 +263,8 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
             if geom_name is None:
                 continue
 
-            geom_class = self.model.geom_class[geom_id]
-            if (
-                geom_class == "visual" and "wall" not in geom_name
-            ):  # geom 이름에 'visual'이 포함된 경우, 단 wall은 제외
+            # geom의 이름에 "visual"이 포함되어 있는지 확인
+            if "visual" in geom_name and "wall" not in geom_name:
                 rng = np.random.default_rng(42)  # 새로운 난수 생성기 생성
                 random_color = rng.random(4)
                 random_color[3] = 1  # 불투명도는 1로 고정
