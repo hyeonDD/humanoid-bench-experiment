@@ -252,11 +252,16 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
 
     # 랜덤한 색으로 변경
     def randomize_visual_geom_colors(self):
+        from mujoco import mj_id2name, mjtObj
+
         """visual class의 모든 geom의 색상을 무작위로 변경"""
         for geom_id in range(self.model.ngeom):
-            # geom의 이름 주소를 이용해 이름을 가져옴
-            name_address = self.model.geom_nameadr[geom_id]
-            geom_name = self.model.names[name_address:]
+            # ID로 이름을 가져옴 (Python 바인딩에서 mj_id2name 함수 사용)
+            geom_name = mj_id2name(self.model, mjtObj.mjOBJ_GEOM, geom_id)
+
+            # 만약 geom_name이 None인 경우는 continue
+            if geom_name is None:
+                continue
 
             geom_class = self.model.geom_class[geom_id]
             if (
