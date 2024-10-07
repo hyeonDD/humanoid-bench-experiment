@@ -265,16 +265,11 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
 
             # geom의 이름에 "visual"이 포함되어 있는지 확인
             if "visual" in geom_name and "wall" not in geom_name:
-                rng = np.random.default_rng(42)  # 새로운 난수 생성기 생성
+                rng = np.random.default_rng()  # 새로운 난수 생성기 생성
                 random_color = rng.random(4)
                 random_color[3] = 1  # 불투명도는 1로 고정
                 # geom의 색상 직접 변경
                 self.model.geom_rgba[geom_id] = random_color
-                # 만약 material이 영향을 미치는 경우 material 설정 해제
-                self.model.geom_matid[geom_id] = -1  # material을 사용하지 않도록 설정
-
-        # 시뮬레이터 업데이트
-        mujoco.mj_forward(self.model, self.data)
 
 
 if __name__ == "__main__":
