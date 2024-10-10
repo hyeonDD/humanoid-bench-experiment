@@ -293,10 +293,10 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
         # x 값을 0(pole), 19(stair), 27(hurdle) 중 하나로 랜덤하게 선택
         x_position = rng.choice([0, 19, 27])
         self.data.qpos[0] = x_position
-        print(f"x_position : {x_position}")
-        print(f"qpos : {self.data.qpos}")
+
         # 시뮬레이터 업데이트
         mujoco.mj_forward(self.model, self.data)
+
 
 if __name__ == "__main__":
     register(
