@@ -241,6 +241,8 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
 
     def reset_model(self):
         mujoco.mj_resetDataKeyframe(self.model, self.data, self.keyframe)
+        if self.cfg.random_start:
+            self.randomize_initial_position()
         mujoco.mj_forward(self.model, self.data)
 
         # Add randomness
