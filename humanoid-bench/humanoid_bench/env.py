@@ -241,13 +241,13 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
         return self.task.step(action)
 
     def reset_model(self):
-        # if self.random_start:
-        # self.randomize_initial_position()
+
         mujoco.mj_resetDataKeyframe(self.model, self.data, self.keyframe)
-        rng = np.random.default_rng()
-        # x 값을 0, 19, 27 중 하나로 무작위 설정
-        x_position = rng.choice([0, 19, 34])
-        self.data.qpos[0] = x_position
+
+        print(self.random_start)
+        if self.random_start:
+            self.randomize_initial_position()
+
         mujoco.mj_forward(self.model, self.data)
 
         # Add randomness
@@ -294,17 +294,11 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
                 self.model.geom_rgba[geom_id] = random_color
 
     def randomize_initial_position(self):
-        """키프레임을 무작위로 선택하여 초기 상태 설정"""
+        """시작 위치 랜덤 조정"""
         rng = np.random.default_rng()
-
-        # 사용할 키프레임 목록
-        keyframe_names = ["qpos0", "qpos1", "qpos2"]
-
-        # 키프레임 이름을 무작위로 선택
-        selected_keyframe_name = rng.choice(keyframe_names)
-
-        # 선택된 키프레임 이름에 해당하는 ID를 가져옴
-        self.keyframe = self.model.key(selected_keyframe_name).id
+        # x 값을 0, 19, 27 중 하나로 무작위 설정
+        x_position = rng.choice([0, 19, 34])
+        self.data.qpos[0] = x_position
 
 
 if __name__ == "__main__":

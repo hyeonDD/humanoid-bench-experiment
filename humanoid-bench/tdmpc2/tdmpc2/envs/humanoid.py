@@ -50,6 +50,7 @@ def make_env(cfg):
     small_obs = cfg.get("small_obs", None)
     if small_obs is not None:
         small_obs = str(small_obs)
+    kwargs = {"random_start": cfg.get("random_start", False)}
 
     print("small obs start:", small_obs)
 
@@ -60,6 +61,7 @@ def make_env(cfg):
         var_path=var_path,
         policy_type=policy_type,
         small_obs=small_obs,
+        **kwargs,
     )
     env = HumanoidWrapper(env, cfg)
     env.max_episode_steps = env.get_wrapper_attr("_max_episode_steps")
