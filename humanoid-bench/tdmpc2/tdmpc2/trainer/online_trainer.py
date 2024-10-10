@@ -110,6 +110,8 @@ class OnlineTrainer(Trainer):
                 if self.cfg.random_color:
                     # 시각적 geom들의 색상 랜덤화
                     self.env.randomize_visual_geom_colors()
+                if self.cfg.random_start:
+                    self.env.randomize_initial_position()
                 self._tds = [self.to_td(obs)]
 
             # Collect experience
