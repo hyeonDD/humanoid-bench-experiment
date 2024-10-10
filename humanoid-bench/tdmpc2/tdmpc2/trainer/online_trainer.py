@@ -111,16 +111,8 @@ class OnlineTrainer(Trainer):
                     # 시각적 geom들의 색상 랜덤화
                     self.env.randomize_visual_geom_colors()
                 if self.cfg.random_start:
-                    import mujoco
-
                     self.env.randomize_initial_position()
-                    # 디버깅: 변경된 qpos 값 확인
-                    print(f"Updated qpos after randomizing: {self.env.data.qpos[:3]}")
 
-                    # 시뮬레이터 상태 업데이트
-                    mujoco.mj_forward(self.env.sim.model, self.env.sim.data)
-                    mujoco.mj_step1(self.env.sim.model, self.env.sim.data)
-                    print(f"Updated qpos after mj_forward: {self.env.data.qpos[:3]}")
                 self._tds = [self.to_td(obs)]
 
             # Collect experience

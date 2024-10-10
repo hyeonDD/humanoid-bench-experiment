@@ -294,9 +294,6 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
         x_position = rng.choice([0, 19, 27])
         self.data.qpos[0] = x_position
 
-        # 시뮬레이터 업데이트
-        mujoco.mj_forward(self.model, self.data)
-
 
 if __name__ == "__main__":
     register(
