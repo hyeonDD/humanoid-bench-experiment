@@ -246,7 +246,7 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
         mujoco.mj_resetDataKeyframe(self.model, self.data, self.keyframe)
         rng = np.random.default_rng()
         # x 값을 0, 19, 27 중 하나로 무작위 설정
-        x_position = rng.choice([0, 19, 27])
+        x_position = rng.choice([0, 19, 38])
         self.data.qpos[0] = x_position
         mujoco.mj_forward(self.model, self.data)
 
