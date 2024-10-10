@@ -144,6 +144,7 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
     ):
         assert robot and control and task, f"{robot} {control} {task}"
         gym.utils.EzPickle.__init__(self, metadata=self.metadata)
+        self.random_start = kwargs.get("random_start", False)
 
         asset_path = os.path.join(os.path.dirname(__file__), "assets")
         model_path = f"envs/{robot}_{control}_{task}.xml"
@@ -240,9 +241,9 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
         return self.task.step(action)
 
     def reset_model(self):
-        mujoco.mj_resetDataKeyframe(self.model, self.data, self.keyframe)
-        if self.cfg.random_start:
+        if self.random_start:
             self.randomize_initial_position()
+        mujoco.mj_resetDataKeyframe(self.model, self.data, self.keyframe)
         mujoco.mj_forward(self.model, self.data)
 
         # Add randomness
