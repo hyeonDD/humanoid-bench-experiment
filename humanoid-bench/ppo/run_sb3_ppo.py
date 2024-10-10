@@ -163,7 +163,7 @@ def main(argv):
         
     run = wandb.init(
         entity=ARGS.wandb_entity,
-        project="humanoid-bench",
+        project="hierarchial_poicies",
         name=f"ppo_{ARGS.env_name}",
         sync_tensorboard=True,  # auto-upload sb3's tensorboard metrics
         monitor_gym=True,  # auto-upload the videos of agents playing the game

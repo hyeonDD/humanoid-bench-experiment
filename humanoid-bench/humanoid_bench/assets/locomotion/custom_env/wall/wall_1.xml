@@ -1,7 +1,0 @@
-<mujocoinclude>
-    <worldbody>
-        <body pos="19 0 0" name="wall_1">
-            <include file="generated_xml_wall.xml"/>
-        </body>
-    </worldbody>
-</mujocoinclude>
