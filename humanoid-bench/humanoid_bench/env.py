@@ -296,7 +296,7 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
         """시작 위치 랜덤 조정"""
         rng = np.random.default_rng()
         # x 값을 0, 19, 27 중 하나로 무작위 설정
-        x_position = rng.choice([0, 19, 54])
+        x_position = rng.choice([0, 19, 52])
         self.data.qpos[0] = x_position
 
 
