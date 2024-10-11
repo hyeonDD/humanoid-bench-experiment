@@ -1,6 +1,6 @@
 <mujocoinclude>
     <worldbody>
-        <body pos="20 0 0">
+        <body pos="24 0 0">
             <include file="generated_xml_stairs.xml"/>
         </body>
     </worldbody>
