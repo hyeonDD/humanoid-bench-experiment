@@ -144,6 +144,7 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
     ):
         assert robot and control and task, f"{robot} {control} {task}"
         gym.utils.EzPickle.__init__(self, metadata=self.metadata)
+        self.random_start = kwargs.get("random_start", False)
 
         asset_path = os.path.join(os.path.dirname(__file__), "assets")
         model_path = f"envs/{robot}_{control}_{task}.xml"
@@ -240,7 +241,12 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
         return self.task.step(action)
 
     def reset_model(self):
+
         mujoco.mj_resetDataKeyframe(self.model, self.data, self.keyframe)
+
+        if self.random_start:
+            self.randomize_initial_position()
+
         mujoco.mj_forward(self.model, self.data)
 
         # Add randomness
@@ -287,15 +293,12 @@ class HumanoidEnv(MujocoEnv, gym.utils.EzPickle):
                 self.model.geom_rgba[geom_id] = random_color
 
     def randomize_initial_position(self):
-        """로봇의 초기 위치(qpos[0:3])를 랜덤하게 변경"""
+        """시작 위치 랜덤 조정"""
         rng = np.random.default_rng()
-
-        # x 값을 0(pole), 19(stair), 27(hurdle) 중 하나로 랜덤하게 선택
-        x_position = rng.choice([0, 19, 27])
+        # x 값을 0, 19, 27 중 하나로 무작위 설정
+        x_position = rng.choice([0, 19, 34])
         self.data.qpos[0] = x_position
 
-        # 시뮬레이터 업데이트
-        mujoco.mj_forward(self.model, self.data)
 
 if __name__ == "__main__":
     register(

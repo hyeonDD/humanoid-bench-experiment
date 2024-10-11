@@ -1,16 +1,15 @@
-
 <mujoco model="pole_jungle_aspect">
     <body name="left_barrier" pos="0 0 0">
         <geom type="box" name="visual_left_barrier" pos="20.0 -3.15 1" size="20.75 0.15 1" rgba="0.9 0.9 0.9 0.2" class="visual"/>
-        <geom type="box" name="left_barrier" pos="20.0 -3.15 1" size="20.75 0.15 1" class="collision"/>
+        <geom type="box" name="pole_r1_left_barrier" pos="20.0 -3.15 1" size="20.75 0.15 1" class="collision"/>
     </body>
     <body name="right_barrier" pos="0 0 0">
         <geom type="box" name="visual_right_barrier" pos="20.0 3.15 1" size="20.75 0.15 1" rgba="0.9 0.9 0.9 0.2" class="visual"/>
-        <geom type="box" name="right_barrier" pos="20.0 3.15 1" size="20.75 0.15 1" class="collision"/>
+        <geom type="box" name="pole_r1_right_pole_r1_barrier" pos="20.0 3.15 1" size="20.75 0.15 1" class="collision"/>
     </body>
     <body name="behind_barrier" pos="0 0 0">
         <geom type="box" name="visual_behind_barrier" pos="-0.6 0 1" size="0.15 3 1" rgba="0.9 0.9 0.9 0.2" class="visual"/>
-        <geom type="box" name="behind_barrier" pos="-0.6 0 1" size="0.15 3 1" class="collision"/>
+        <geom type="box" name="pole_r1_behind_pole_r1_barrier" pos="-0.6 0 1" size="0.15 3 1" class="collision"/>
     </body>
     <body name="pole_rows" pos="0 0 0">
         <body name="pole_row_1" pos="1.0 0 0">
@@ -30,6 +29,8 @@
             <geom type="cylinder" name="pole_r2_c2" pos="0 0.0 1" size="0.05 1" class="collision"/>
             <geom type="cylinder" name="visual_pole_r2_c3" pos="0 -1.5 1" size="0.05 1" rgba="0.5 0.5 0.5 1" class="visual"/>
             <geom type="cylinder" name="pole_r2_c3" pos="0 -1.5 1" size="0.05 1" class="collision"/>
+
+
         </body>
         <body name="pole_row_3" pos="3.0 0 0">
             <geom type="cylinder" name="visual_pole_r3_c1" pos="0 2.25 1" size="0.05 1" rgba="0.5 0.5 0.5 1" class="visual"/>
