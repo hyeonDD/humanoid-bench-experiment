@@ -1,6 +1,6 @@
 <mujocoinclude>
     <worldbody >
-        <body pos="28 0 0">
+        <body pos="47 0 0">
             <include file="generated_xml_hurdles.xml"/>
         </body>
     </worldbody>
