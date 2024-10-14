@@ -137,3 +137,5 @@ class OnlineTrainer(Trainer):
             self._step += 1
 
         self.logger.finish(self.agent)
+        # replay buffer(데이터세트)
+        self.logger.finish(self.buffer)

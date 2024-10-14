@@ -179,6 +179,7 @@ class Logger:
     def finish(self, agent=None, buffer=None):
         try:
             self.save_agent(agent)
+            self.save_agent(buffer)
         except Exception as e:
             print(colored(f"Failed to save model: {e}", "red"))
         if self._wandb:
