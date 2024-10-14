@@ -105,6 +105,6 @@ class OfflineTrainer(Trainer):
                         self.logger.save_agent(self.agent, identifier=f"{i}")
                 self.logger.log(metrics, "pretrain")
 
-        self.logger.finish(self.agent)
-        # replay buffer(데이터세트)
-        self.logger.finish(self.buffer)
+        # replay buffer(데이터세트)추가
+        # self.logger.finish(self.agent)
+        self.logger.finish(self.agent, self.buffer)
