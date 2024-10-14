@@ -168,7 +168,15 @@ class Logger:
                 artifact.add_file(fp)
                 self._wandb.log_artifact(artifact)
 
-    def finish(self, agent=None):
+    def save_buffer(self, buffer=None, identifier="replay_buffer"):
+        """
+        replay buffer 로컬에 pt 파일 저장
+        """
+        if buffer:
+            fp = self._model_dir / f"{str(identifier)}.pt"
+            buffer.save(fp)
+
+    def finish(self, agent=None, buffer=None):
         try:
             self.save_agent(agent)
         except Exception as e:

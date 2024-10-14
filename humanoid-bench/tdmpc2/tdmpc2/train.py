@@ -26,10 +26,11 @@ from tdmpc2.common.logger import Logger
 
 torch.backends.cudnn.benchmark = True
 
-# 모델 저장 로직
+# 모델, replay buffer(데이터세트) 저장 로직
 def save_model(trainer):
     print("\nSIGTERM received. Saving the model...")
     trainer.logger.save_agent(trainer.agent)
+    trainer.logger.save_buffer(trainer.buffer)
     print("Model saved successfully.")
 
 @hydra.main(config_name="config", config_path=".")
