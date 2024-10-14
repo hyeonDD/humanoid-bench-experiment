@@ -138,4 +138,7 @@ class OnlineTrainer(Trainer):
 
         # replay buffer(데이터세트) 추가
         # self.logger.finish(self.agent)
-        self.logger.finish(self.agent, self.buffer)
+        # TODO
+        # self.logger.finish(self.agent, self.buffer)
+        self.logger.finish(self.agent, self._tds)
+        
