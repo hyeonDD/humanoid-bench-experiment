@@ -175,8 +175,6 @@ class Logger:
         if buffer_state:
             import torch
             fp = self._model_dir / f"{str(identifier)}.pt"
-            buffer_state.save(fp)
-            
             torch.save(buffer_state, fp)
 
     def finish(self, agent=None, buffer_state=None):
