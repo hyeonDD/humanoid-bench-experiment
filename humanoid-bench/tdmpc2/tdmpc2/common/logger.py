@@ -168,18 +168,22 @@ class Logger:
                 artifact.add_file(fp)
                 self._wandb.log_artifact(artifact)
 
-    def save_buffer(self, buffer=None, identifier="replay_buffer"):
+    def save_buffer(self, buffer_state=None, identifier="replay_buffer"):
         """
         replay buffer 로컬에 pt 파일 저장
         """
-        if buffer:
+        if buffer_state:
+            import torch
             fp = self._model_dir / f"{str(identifier)}.pt"
-            buffer.save(fp)
+            buffer_state.save(fp)
+            
+            torch.save(buffer_state, fp)
 
-    def finish(self, agent=None, buffer=None):
+    def finish(self, agent=None, buffer_state=None):
         try:
             self.save_agent(agent)
-            self.save_buffer(buffer)
+            if self.cfg.save_buffer:
+                self.save_buffer(buffer_state)
         except Exception as e:
             print(colored(f"Failed to save model: {e}", "red"))
         if self._wandb:

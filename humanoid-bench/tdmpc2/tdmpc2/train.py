@@ -30,7 +30,7 @@ torch.backends.cudnn.benchmark = True
 def save_model(trainer):
     print("\nSIGTERM received. Saving the model...")
     trainer.logger.save_agent(trainer.agent)
-    trainer.logger.save_buffer(trainer.buffer)
+    trainer.logger.save_buffer(trainer._tds)
     print("Model saved successfully.")
 
 @hydra.main(config_name="config", config_path=".")

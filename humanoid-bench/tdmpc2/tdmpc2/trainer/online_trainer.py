@@ -140,17 +140,17 @@ class OnlineTrainer(Trainer):
         # self.logger.finish(self.agent)
         # TODO
         # self.logger.finish(self.agent, self.buffer)
-        self.logger.finish(self.agent)
+        self.logger.finish(self.agent, self._tds)
         
-        def save_buffer(self, buffer=None, identifier="replay_buffer"):
-            """
-            replay buffer 로컬에 pt 파일 저장
-            """
+        # def save_buffer(self, buffer=None, identifier="replay_buffer"):
+        #     """
+        #     replay buffer 로컬에 pt 파일 저장
+        #     """
             
-            if buffer:
-                fp = self.logger._model_dir / f"{str(identifier)}.pt"
-                buffer.save(fp)
+        #     if buffer:
+        #         fp = self.logger._model_dir / f"{str(identifier)}.pt"
+        #         buffer.save(fp)
         
-        print('-'*30)
-        save_buffer(self._tds)
-        print('-'*30)
+        # print('-'*30)
+        # save_buffer(self._tds)
+        # print('-'*30)

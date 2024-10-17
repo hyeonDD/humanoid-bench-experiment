@@ -115,11 +115,11 @@ class Buffer:
         td = self._buffer.sample().view(-1, self.cfg.horizon + 1).permute(1, 0)
         return self._prepare_batch(td)
 
-    def save(self, fp):
-        """
-        replay buffer (데이터세트) 저장용
+    # def save(self, fp):
+    #     """
+    #     replay buffer (데이터세트) 저장용
 
-        Args:
-                fp (str): Filepath to save state dict to.
-        """
-        torch.save({"model": self._buffer.state_dict()}, fp)
+    #     Args:
+    #             fp (str): Filepath to save state dict to.
+    #     """
+    #     torch.save({"model": self._buffer.state_dict()}, fp)
