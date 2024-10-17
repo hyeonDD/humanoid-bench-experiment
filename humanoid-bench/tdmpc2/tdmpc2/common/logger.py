@@ -117,6 +117,8 @@ class Logger:
         self._model_dir = make_dir(self._log_dir / "models")
         self._save_csv = cfg.save_csv
         self._save_agent = cfg.save_agent
+        # buffer save
+        self._save_buffer = cfg.save_buffer
         self._group = cfg_to_group(cfg)
         self._seed = cfg.seed
         self._eval = []
@@ -172,16 +174,15 @@ class Logger:
         """
         replay buffer 로컬에 pt 파일 저장
         """
-        if buffer_state:
+        if self._save_buffer and buffer_state:
             import torch
             fp = self._model_dir / f"{str(identifier)}.pt"
-            torch.save(buffer_state, fp)
+            torch.save(*buffer_state, fp)
 
     def finish(self, agent=None, buffer_state=None):
         try:
             self.save_agent(agent)
-            if self.cfg.save_buffer:
-                self.save_buffer(buffer_state)
+            self.save_buffer(buffer_state)
         except Exception as e:
             print(colored(f"Failed to save model: {e}", "red"))
         if self._wandb:
