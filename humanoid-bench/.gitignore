@@ -15,3 +15,7 @@ models
 outputs
 runs
 wandb
+
+#data
+videos
+image_dataset
