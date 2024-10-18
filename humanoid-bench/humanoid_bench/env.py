@@ -52,9 +52,10 @@ from .envs.room import Room
 from .envs.powerlift import Powerlift
 from .envs.insert import Insert
 
-# CustomTaskCombine 추가
+# CustomTask 추가
 from .envs.custom_task.baseline.custom_task_combine import CustomTaskCombine
 from .envs.custom_task.baseline.base_v2 import Base
+from .envs.custom_task.base_v2_exp_early_terminate import BaseEarlyTerminate
 
 
 DEFAULT_CAMERA_CONFIG = {
@@ -110,6 +111,7 @@ TASKS = {
     "custom_task_combine": CustomTaskCombine,
     "proto": Base,
     "proto_slide": Base,
+    "proto_slide_early_terminate": BaseEarlyTerminate,
     #     "walk_with_hurdle": Walk, # basic graph
     #     "walk_with_stair": Walk, # basic graph
     #     "walk_with_pole": Walk, # basic graph
