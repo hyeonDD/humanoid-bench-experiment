@@ -97,3 +97,4 @@ small_obs: ???
 # custom
 random_color: false
 random_start: false
+terminate_penalty: false

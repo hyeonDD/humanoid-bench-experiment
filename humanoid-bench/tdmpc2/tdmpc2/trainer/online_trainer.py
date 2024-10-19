@@ -119,6 +119,8 @@ class OnlineTrainer(Trainer):
             else:
                 action = self.env.rand_act()
             obs, reward, done, truncated, info = self.env.step(action)
+            if self.cfg.terminate_penalty and done:
+                reward *= 0.9
             done = done or truncated
             self._tds.append(self.to_td(obs, action, reward))
 
