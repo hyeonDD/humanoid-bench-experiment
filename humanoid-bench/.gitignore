@@ -19,3 +19,5 @@ wandb
 #data
 videos
 image_dataset
+
+hide_*
