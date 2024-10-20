@@ -56,7 +56,7 @@ from .envs.insert import Insert
 from .envs.custom_task.baseline.custom_task_combine import CustomTaskCombine
 from .envs.custom_task.baseline.base_v2 import Base
 from .envs.custom_task.base_v2_exp_early_terminate import BaseEarlyTerminate
-
+from .envs.custom_task.reward_with_visual import BaseWithTask
 
 DEFAULT_CAMERA_CONFIG = {
     "trackbodyid": 1,
@@ -112,6 +112,7 @@ TASKS = {
     "proto": Base,
     "proto_slide": Base,
     "proto_slide_early_terminate": BaseEarlyTerminate,
+    "proto_with_visual": BaseWithTask,
     #     "walk_with_hurdle": Walk, # basic graph
     #     "walk_with_stair": Walk, # basic graph
     #     "walk_with_pole": Walk, # basic graph
