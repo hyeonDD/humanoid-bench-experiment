@@ -5,6 +5,7 @@ import torch
 from ultralytics import YOLO
 from gymnasium.spaces import Box
 from dm_control.utils import rewards
+import cv2
 
 from humanoid_bench.tasks import Task
 
@@ -69,15 +70,14 @@ class BaseWithTask(Task):
         """
         # Mujoco에서 이미지 가져오기 (224,224 사이즈로 변환)
         image = self._env.mujoco_renderer.render(
-            mode = "rgb_array",
-            width = 224,
-            height = 224,
-            camera_id = self._env.camera_id,
-            camera_name=self._env.camera_name
+            self._env.render_mode, self._env.camera_id, self._env.camera_name
         )
 
+        # 이미지 크기 조정 (224x224)
+        image_resized = cv2.resize(image, (224, 224))
+
          # 이미지 텐서로 변환 (C, H, W 형식으로 변환 및 차원 추가)
-        img_tensor = torch.tensor(image.transpose(2, 0, 1)).unsqueeze(0).float()
+        img_tensor = torch.tensor(image_resized.transpose(2, 0, 1)).unsqueeze(0).float()
         return img_tensor
     
     def predict_task(self):
