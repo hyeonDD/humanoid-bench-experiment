@@ -63,7 +63,7 @@ class BaseWithTask(Task):
             global _STAND_HEIGHT
             _STAND_HEIGHT = 1.28
 
-        self.task_label = self.predict_task()
+        self.task_label = -1
 
     @property
     def observation_space(self):
@@ -98,6 +98,7 @@ class BaseWithTask(Task):
         """
         YOLO 모델을 이용해 예측된 task에 따라 보상 함수를 적용하는 함수.
         """
+        self.task_label = self.predict_task()
         # task에 따른 보상함수 적용
         if self.task_label == 0:  # Hurdle
             self._move_speed = _HURDLE_SPEED
