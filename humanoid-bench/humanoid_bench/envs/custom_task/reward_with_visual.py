@@ -128,7 +128,7 @@ class BaseWithTask(Task):
         elif predicted_task == 1:  # pole
             return self._env.data.qpos[2] < 0.5, {}
         elif predicted_task == 2:  # ramp/slide
-            self.robot.torso_upright() < 0.1, {}
+            return self.robot.torso_upright() < 0.1, {}
         else:
             return False, {}
 
