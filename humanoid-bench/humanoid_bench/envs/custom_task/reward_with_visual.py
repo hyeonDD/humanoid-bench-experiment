@@ -122,9 +122,6 @@ class BaseWithTask(Task):
         # task 예측
         predicted_task = self.predict_task()
 
-        # YOLO 모델을 통해 task 예측
-        predicted_task = predict_image_label(model, img_tensor)
-
         # task에 따른 종료조건 적용
         if predicted_task == 0:  # Hurdle
             return self._env.data.qpos[2] < 0.2, {}
