@@ -71,7 +71,7 @@ class BaseWithTask(Task):
             low=-np.inf, high=np.inf, shape=(self.robot.dof * 2 - 1,), dtype=np.float64
         )
 
-    def render(self):
+    def get_image(self):
         """
         Mujoco 환경에서 이미지를 가져와서 YOLO 모델에 맞는 텐서 형식으로 변환하는 함수
         """
@@ -91,7 +91,7 @@ class BaseWithTask(Task):
         """
         이미지 예측 함수
         """
-        img_tensor = self.render()
+        img_tensor = self.get_image()
         return predict_image_label(model, img_tensor)
 
     def get_reward(self):
