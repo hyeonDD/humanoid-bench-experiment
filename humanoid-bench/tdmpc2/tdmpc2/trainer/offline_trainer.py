@@ -53,6 +53,8 @@ class OfflineTrainer(Trainer):
         assert self.cfg.multitask and self.cfg.task in {
             "mt30",
             "mt80",
+            # humanoid-multitask추가
+            "mt-humanoid",
         }, "Offline training only supports multitask training with mt30 or mt80 task sets."
 
         # Load data

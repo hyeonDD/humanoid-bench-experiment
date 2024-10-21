@@ -138,4 +138,12 @@ TASK_SET = {
         "mw-door-unlock",
         "mw-hand-insert",
     ],
+    # humanoid-multitask추가
+    "mt-humanoid": [
+        # 4 original humanoid tasks
+        "humanoid_h1-walk",
+        "humanoid_h1-pole",
+        "humanoid_h1-stair",
+        "humanoid_h1-hurdle",
+    ]
 }

@@ -1,0 +1,15 @@
+<mujoco model="h1_pos_proto_with_visual">humanoid_bench
+    <option timestep="0.002" iterations="100" ls_iterations="50" solver="Newton">
+        <flag eulerdamp="enable"/>
+    </option>
+    <include file="../common/visual.xml"/>
+    <include file="../../../custom_env/floor.xml"/>
+    <include file="../robots/h1_pos.xml"/>
+    <include file="../../../custom_env/pole/pole.xml" />
+    <include file="../../../custom_env/slide/slide.xml"/>
+    <include file='../../../custom_env/hurdle/hurdle.xml' />
+    <include file="../../../custom_env/wall/wall.xml"/>
+    <keyframe>
+        <key name="qpos0" qpos="0 0 0.98 1 0 0 0 0 0 -0.4 0.8 -0.4 0 0 -0.4 0.8 -0.4 0 0 0 0 0 0 0 0 0"/>
+    </keyframe>
+</mujoco>
