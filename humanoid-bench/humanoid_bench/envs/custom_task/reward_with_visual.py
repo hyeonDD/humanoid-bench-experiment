@@ -9,9 +9,11 @@ from dm_control.utils import rewards
 from humanoid_bench.tasks import Task
 
 # YOLOv8 분류 모델 불러오기
-model = YOLO("classifier\task_classifier_model\yolov8n-cls.pt").model
+model = YOLO("..\..\classifier\task_classifier_model\yolov8n-cls.pt").model
 model.load_state_dict(
-    torch.load("classifier\task_classifier_model\yolov8_model_epoch_10_acc_97.66.pt")
+    torch.load(
+        "..\..\classifier\task_classifier_model\yolov8_model_epoch_10_acc_97.66.pt"
+    )
 )
 
 # Height of head above which stand reward is 1.
