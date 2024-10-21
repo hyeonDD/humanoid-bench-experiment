@@ -63,6 +63,8 @@ class BaseWithTask(Task):
             global _STAND_HEIGHT
             _STAND_HEIGHT = 1.28
 
+        self.task_label = self.predict_task()
+
     @property
     def observation_space(self):
         return Box(
@@ -96,19 +98,16 @@ class BaseWithTask(Task):
         """
         YOLO 모델을 이용해 예측된 task에 따라 보상 함수를 적용하는 함수.
         """
-        # task 예측
-        predicted_task = self.predict_task()
-
         # task에 따른 보상함수 적용
-        if predicted_task == 0:  # Hurdle
+        if self.task_label == 0:  # Hurdle
             self._move_speed = _HURDLE_SPEED
             reward, info = self.get_hurdle_reward()
-        elif predicted_task == 1:  # pole
+        elif self.task_label == 1:  # pole
             self._move_speed = _POLE_SPEED
             self.htarget_low = np.array([-1.0, -1.0, 0.8])
             self.htarget_high = np.array([1000.0, 1.0, 2.0])
             reward, info = self.get_pole_reward()
-        elif predicted_task == 2:  # ramp/slide
+        elif self.task_label == 2:  # ramp/slide
             reward, info = self.get_slide_reward()
         else:
             reward, info = 0, {}
@@ -119,15 +118,12 @@ class BaseWithTask(Task):
         """
         YOLO 모델을 이용해 예측된 task에 따라 종료 조건을 적용하는 함수.
         """
-        # task 예측
-        predicted_task = self.predict_task()
-
         # task에 따른 종료조건 적용
-        if predicted_task == 0:  # Hurdle
+        if self.task_label == 0:  # Hurdle
             return self._env.data.qpos[2] < 0.2, {}
-        elif predicted_task == 1:  # pole
+        elif self.task_label == 1:  # pole
             return self._env.data.qpos[2] < 0.5, {}
-        elif predicted_task == 2:  # ramp/slide
+        elif self.task_label == 2:  # ramp/slide
             return self.robot.torso_upright() < 0.1, {}
         else:
             return False, {}
