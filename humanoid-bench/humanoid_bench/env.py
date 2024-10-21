@@ -56,6 +56,7 @@ from .envs.insert import Insert
 from .envs.custom_task.baseline.custom_task_combine import CustomTaskCombine
 from .envs.custom_task.baseline.base_v2 import Base
 from .envs.custom_task.base_v2_exp_early_terminate import BaseEarlyTerminate
+from .envs.custom_task.base_v2_long_episode import BaseLong
 from .envs.custom_task.reward_with_visual import BaseWithTask
 
 DEFAULT_CAMERA_CONFIG = {
@@ -110,7 +111,7 @@ TASKS = {
     # CustomTaskCombine 추가
     "custom_task_combine": CustomTaskCombine,
     "proto": Base,
-    "proto_slide": Base,
+    "proto_slide": BaseLong,
     "proto_slide_early_terminate": BaseEarlyTerminate,
     "proto_with_visual": BaseWithTask,
     #     "walk_with_hurdle": Walk, # basic graph
