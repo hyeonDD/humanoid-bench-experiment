@@ -112,3 +112,6 @@ class BaseLong(Task):
         # pole : return self._env.data.qpos[2] < 0.5, {}
         # hurdle : return self._env.data.qpos[2] < 0.2, {}
         return self.robot.torso_upright() < 0.1, {}
+        
+        # 영상 길게 찍으려고 잠시 바꾼용도
+        # return self.robot.torso_upright() < 0.05, {}

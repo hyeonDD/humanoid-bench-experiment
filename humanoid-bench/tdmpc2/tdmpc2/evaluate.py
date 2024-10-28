@@ -101,11 +101,15 @@ def evaluate(cfg: dict):
         ep_rewards, ep_successes = [], []
         for i in range(cfg.eval_episodes):
             obs, done, ep_reward, t = env.reset(task_idx=task_idx), False, 0, 0
+            # obs tensor type으로 받게끔 변경
+            obs = obs[0]
             if cfg.save_video:
                 frames = [env.render()]
             while not done:
                 action = agent.act(obs, t0=t == 0, task=task_idx)
-                obs, reward, done, info = env.step(action)
+                # obs, reward, done, info = env.step(action)
+                # truncated 변수 할당 안하도록 변경
+                obs, reward, done, _, info = env.step(action)
                 ep_reward += reward
                 t += 1
                 if cfg.save_video:
