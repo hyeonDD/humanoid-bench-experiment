@@ -26,11 +26,13 @@ from tdmpc2.common.logger import Logger
 
 torch.backends.cudnn.benchmark = True
 
+
 # 모델 저장 로직
 def save_model(trainer):
     print("\nSIGTERM received. Saving the model...")
     trainer.logger.save_agent(trainer.agent)
     print("Model saved successfully.")
+
 
 @hydra.main(config_name="config", config_path=".")
 def train(cfg: dict):
@@ -43,13 +45,28 @@ def train(cfg: dict):
     print(colored("Work dir:", "yellow", attrs=["bold"]), cfg.work_dir)
 
     trainer_cls = OfflineTrainer if cfg.multitask else OnlineTrainer
-    trainer = trainer_cls(
-        cfg=cfg,
-        env=make_env(cfg),
-        agent=TDMPC2(cfg),
-        buffer=Buffer(cfg),
-        logger=Logger(cfg),
-    )
+    if cfg.checkpoint:
+        agent = TDMPC2(cfg)
+        print(colored(f"Checkpoint: {cfg.checkpoint}", "blue", attrs=["bold"]))
+        assert os.path.exists(
+            cfg.checkpoint
+        ), f"Checkpoint {cfg.checkpoint} not found! Must be a valid filepath."
+        agent.load(cfg.checkpoint)
+        trainer = trainer_cls(
+            cfg=cfg,
+            env=make_env(cfg),
+            agent=agent,
+            buffer=Buffer(cfg),
+            logger=Logger(cfg),
+        )
+    else:
+        trainer = trainer_cls(
+            cfg=cfg,
+            env=make_env(cfg),
+            agent=TDMPC2(cfg),
+            buffer=Buffer(cfg),
+            logger=Logger(cfg),
+        )
 
     # SIGTERM 핸들러 등록
     def handle_sigterm(signum, frame):
@@ -66,6 +83,7 @@ def train(cfg: dict):
     except Exception as e:
         print(f"An error occurred: {e}")
         traceback.print_exc()
+
 
 if __name__ == "__main__":
     train()
