@@ -83,7 +83,7 @@ class BaseWithTask(Task):
         # 이미지 크기 조정 (224x224)
         image_resized = cv2.resize(image, (224, 224))
 
-         # 이미지 텐서로 변환 (C, H, W 형식으로 변환 및 차원 추가)
+        # 이미지 텐서로 변환 (C, H, W 형식으로 변환 및 차원 추가)
         img_tensor = torch.tensor(image_resized.transpose(2, 0, 1)).unsqueeze(0).float()
         return img_tensor
 
@@ -180,32 +180,22 @@ class BaseWithTask(Task):
         return standing, upright, small_control, stand_reward, move
 
     def get_hurdle_reward(self):
-        self.wall_collision_ids = [
-            self._env.named.data.geom_xpos.axes.row.names.index(wall_name)
-            for wall_name in [
-                "left_barrier_collision",
-                "right_barrier_collision",
-                "behind_barrier_collision",
-            ]
-        ]
 
         standing, upright, small_control, stand_reward, move = self.compute_rewards(
             0, 0.8, _HURDLE_SPEED
         )
-        wall_collision_discount = 1
+        collision_discount = 1
+        all_geoms_id = self._env.named.data.geom_xpos.axes.row.names
 
         for pair in self._env.data.contact.geom:
-            if any(
-                [
-                    wall_collision_id in pair
-                    for wall_collision_id in self.wall_collision_ids
-                ]
-            ):  # for no hand. if for hand, > 155
-                wall_collision_discount = 0.1
-                # print(pair)
+            if (
+                any(["collision" in all_geoms_id[p_val] for p_val in pair])
+                and 0 not in pair
+            ):  #
+                collision_discount = 0.1
                 break
 
-        reward = small_control * stand_reward * move * wall_collision_discount
+        reward = small_control * stand_reward * move * collision_discount
 
         return reward, {
             "stand_reward": stand_reward,
@@ -213,7 +203,7 @@ class BaseWithTask(Task):
             "move": move,
             "standing": standing,
             "upright": upright,
-            "wall_collision_discount": wall_collision_discount,
+            "wall_collision_discount": collision_discount,
         }
 
     def get_pole_reward(self):
@@ -226,7 +216,7 @@ class BaseWithTask(Task):
         collision_discount = 1
         for pair in self._env.data.contact.geom:
             if (
-                any(["pole_r" in all_geoms_id[p_val] for p_val in pair])
+                any(["collision" in all_geoms_id[p_val] for p_val in pair])
                 and 0 not in pair
             ):  #
                 collision_discount = 0.1
