@@ -1,3 +1,8 @@
+# 휴머노이드 벤치
+
+해당 폴더는 [휴머노이드 벤치(HumanoidBench)](https://github.com/carlosferrazza/humanoid-bench)를 활용해 개량되어 만들어졌습니다.
+
+
 # HumanoidBench: Simulated Humanoid Benchmark for Whole-Body Locomotion and Manipulation
 
 [Paper](https://arxiv.org/abs/2403.10506) [Website](https://sferrazza.cc/humanoidbench_site/)
